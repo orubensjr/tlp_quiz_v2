@@ -69,24 +69,9 @@
     "vite": "6.3.5",
     "autoprefixer": "10.4.20",
     "postcss": "8.5.3"
-
-}
   },
   "peerDependencies": {
     "react": "18.3.1",
     "react-dom": "18.3.1"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    },
-    "react-dom": {
-      "optional": true
-    }
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "6.3.5"
-    }
   }
 }
