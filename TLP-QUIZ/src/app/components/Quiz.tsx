@@ -97,10 +97,11 @@ export const profiles: Profile[] = [
   {
     id: 'forasteiro',
     name: 'INDEPEDENTE',
-    description: 'Colocam a vida pessoal no centro e se relacionam com o trabalho de forma autônoma, priorizando autodesenvolvimento.',
+    description: 'Você tende a manter certa distância emocional da empresa. Enxerga o trabalho como algo funcional ou temporário, priorizando sua autonomia e possibilidades futuras.'
+    //description: 'Colocam a vida pessoal no centro e se relacionam com o trabalho de forma autônoma, priorizando autodesenvolvimento.',
     characteristics: [
-      '18% dos profissionais',
-      'Repeita limites claros entre vida pessoal e profissional',
+      'Representa 18% dos profissionais',
+      'Determina e respeita limites entre vida pessoal e profissional',
       'Previsibilidade no dia-a-dia é fundamental',
       'Clareza sobre expectativas, responsabilidades e critérios é essencial',
     ],
