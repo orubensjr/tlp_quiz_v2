@@ -27,7 +27,7 @@ const questions: Question[] = [
     options: [
       { text: 'Vejo o trabalho como espaço para fazer bem o que é esperado e seguir meu próprio caminho, sem tanto vínculo emocional.', profiles: ['forasteiro', 'funcional'] },
       { text: 'Meu engajamento nasce quando acredito no propósito e tenho orgulho do que a empresa representa.', profiles: ['guardiao', 'engajado'] },
-      { text: 'O que mais me conecta é o time; gosto de colaborar e fazer parte de algo maior.', profiles: ['coletivista', 'envolvido'] },
+      { text: 'O que mais me conecta é o time, gosto de colaborar e fazer parte de algo maior.', profiles: ['coletivista', 'envolvido'] },
       { text: 'Meu trabalho é prioridade, gosto de regras claras e me dedico de forma intensa ao que precisa ser feito.', profiles: ['workaholic', 'normativista'] },
     ],
   },
@@ -97,8 +97,7 @@ export const profiles: Profile[] = [
   {
     id: 'forasteiro',
     name: 'INDEPEDENTE',
-    description: 'Você tende a manter certa distância emocional da empresa. Enxerga o trabalho como algo funcional ou temporário, priorizando sua autonomia e possibilidades futuras.'
-    //description: 'Colocam a vida pessoal no centro e se relacionam com o trabalho de forma autônoma, priorizando autodesenvolvimento.',
+    description: 'Você tende a manter certa distância emocional da empresa. Enxerga o trabalho como algo funcional ou temporário, priorizando sua autonomia e possibilidades futuras.',
     characteristics: [
       'Representa 18% dos profissionais',
       'Determina e respeita limites entre vida pessoal e profissional',
@@ -109,11 +108,11 @@ export const profiles: Profile[] = [
     image: 'https://images.unsplash.com/photo-1758518727592-706e80ebc354?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGxlYWRlciUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzAwNDI1OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
-    id: 'analitico',
-    name: 'Analítico',
-    description: 'Você tem um pensamento crítico aguçado e se destaca na análise detalhada de informações.',
+    id: 'guardiao',
+    name: 'Guardião do Propósito',
+    description: 'Você se engaja quando acredita no impacto do que faz. Valores, coerência e sentido são fatores decisivos para sua motivação.',
     characteristics: [
-      'Atenção aos detalhes',
+      'Representa 11% dos profissionais',
       'Baseado em dados e evidências',
       'Pensamento lógico estruturado',
       'Resolve problemas de forma metódica',
