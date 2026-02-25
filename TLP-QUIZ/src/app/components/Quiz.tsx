@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import { QuizResult } from '@/app/components/QuizResult';
+import { QuizResult } from '@/src/app/components/QuizResult';
 
 export interface Question {
   id: number;
