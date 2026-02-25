@@ -5,250 +5,278 @@ import { QuizResult } from '@/app/components/QuizResult';
 export interface Question {
   id: number;
   question: string;
-  options: {
-    text: string;
-    profiles: string[];
-  }[];
+  options: { text: string }[];
 }
 
 export interface Profile {
-  id: string;
-  name: string;
+  id: string;               // ex.: 'forasteiro'
+  name: string;             // ex.: 'Independente'
   description: string;
   characteristics: string[];
   color: string;
   image: string;
+  populationPct: number;    // % da população (do PPT)
 }
 
+/**
+ * Perfis oficiais (8) de acordo com o PPT + mapeamentos solicitados.
+ * IDs padronizados conforme você pediu.
+ */
+export const profiles: Profile[] = [
+  {
+    id: 'forasteiro', // Independente
+    name: 'Independente',
+    description:
+      'Você valoriza autonomia e tempo para o que realmente importa. Mantém limites claros entre vida pessoal e trabalho.',
+    characteristics: [
+      'Representa 18% da população',
+      'Autonomia e liberdade são essenciais',
+      'Busca previsibilidade e clareza de expectativas',
+      'Trabalho não é o centro da sua vida',
+    ],
+    color: '#00EB5E',
+    image:
+      'https://images.unsplash.com/photo-1758518727592-706e80ebc354?auto=format&fit=crop&w=1280&q=80',
+    populationPct: 18,
+  },
+  {
+    id: 'guardiao', // Intencionais
+    name: 'Intencionais',
+    description:
+      'Você equilibra o trabalho com outros aspectos da vida, com escolhas conscientes e foco no que faz sentido.',
+    characteristics: [
+      'Representa 23% da população',
+      'Decisões ponderadas e consistentes',
+      'Busca propósito, mas sem abrir mão do equilíbrio',
+      'Foco em resultados sustentáveis',
+    ],
+    color: '#3B82F6',
+    image:
+      'https://images.unsplash.com/photo-1758691736498-422201cc57da?auto=format&fit=crop&w=1280&q=80',
+    populationPct: 23,
+  },
+  {
+    id: 'funcional', // Objetivos
+    name: 'Objetivos',
+    description:
+      'Você se engaja por metas claras e avanço profissional, mantendo critérios e métricas bem definidos.',
+    characteristics: [
+      'Representa 11% da população',
+      'Foco em objetivos e progressão',
+      'Valoriza meritocracia e reconhecimento por entrega',
+      'Clareza de papéis e indicadores',
+    ],
+    color: '#10B981',
+    image:
+      'https://images.unsplash.com/photo-1758874384552-5d090a98033b?auto=format&fit=crop&w=1280&q=80',
+    populationPct: 11,
+  },
+  {
+    id: 'coletivista', // Comunitários
+    name: 'Comunitários',
+    description:
+      'Você se envolve com o impacto social e com a comunidade, valorizando conexões e colaboração.',
+    characteristics: [
+      'Representa 5% da população',
+      'Alto senso de pertencimento',
+      'Engajamento em ações coletivas/voluntárias',
+      'Cooperação e empatia no dia a dia',
+    ],
+    color: '#F59E0B',
+    image:
+      'https://images.unsplash.com/photo-1739298061707-cefee19941b7?auto=format&fit=crop&w=1280&q=80',
+    populationPct: 5,
+  },
+  {
+    id: 'workaholic', // Workaholic
+    name: 'Workaholic',
+    description:
+      'Trabalho no centro das suas decisões. Alta dedicação e intensidade nas entregas.',
+    characteristics: [
+      'Representa 10% da população',
+      'Alta disciplina e produtividade',
+      'Priorização do trabalho no cotidiano',
+      'Busca constante por resultados',
+    ],
+    color: '#EF4444',
+    image:
+      'https://images.unsplash.com/photo-1761250246894-ee2314939662?auto=format&fit=crop&w=1280&q=80',
+    populationPct: 10,
+  },
+  {
+    id: 'envolvido', // Conectados
+    name: 'Conectados',
+    description:
+      'Você equilibra vida e trabalho, com envolvimento consistente e bom relacionamento com a empresa.',
+    characteristics: [
+      'Representa 9% da população',
+      'Relacionamento saudável com a empresa',
+      'Equilíbrio vida-trabalho',
+      'Compromisso com entregas e times',
+    ],
+    color: '#06B6D4',
+    image:
+      'https://images.unsplash.com/photo-1760037028485-d00dd2b8f6f0?auto=format&fit=crop&w=1280&q=80',
+    populationPct: 9,
+  },
+  {
+    id: 'normativista', // Estáveis
+    name: 'Estáveis',
+    description:
+      'Você busca consistência, previsibilidade e um ambiente que incentive relações duradouras.',
+    characteristics: [
+      'Representa 17% da população',
+      'Rotina e processos claros',
+      'Vínculo de confiança com a empresa',
+      'Engajamento constante e seguro',
+    ],
+    color: '#6366F1',
+    image:
+      'https://images.unsplash.com/photo-1758873272562-aa5459cbf34b?auto=format&fit=crop&w=1280&q=80',
+    populationPct: 17,
+  },
+  {
+    id: 'engajado', // Multiengajados
+    name: 'Multiengajados',
+    description:
+      'Alto envolvimento tanto com trabalho quanto com comunidade. Energia e protagonismo em várias frentes.',
+    characteristics: [
+      'Representa 7% da população',
+      'Alto engajamento em múltiplos temas',
+      'Colaboração, impacto e entrega',
+      'Conexão forte com propósito',
+    ],
+    color: '#8B5CF6',
+    image:
+      'https://images.unsplash.com/photo-1709803312782-0c3b175875ed?auto=format&fit=crop&w=1280&q=80',
+    populationPct: 7,
+  },
+];
+
+/**
+ * Perguntas oficiais (5) – o resultado é calculado APENAS a partir de P1 e P4.
+ */
 const questions: Question[] = [
   {
     id: 1,
-    question: 'Vamos falar sobre o seu trabalho. O quanto ele é importante para você?​',
-       options: [
-      { text: 'Meu trabalho não é tão importante, quero ter tempo livre para fazer o que realmente importa para mim.', profiles: ['independente', 'comunitario'] },
-      { text: 'Meu trabalho é importante, mas não como o resto da minha vida.', profiles: ['guardiao', 'normativista'] },
-      { text: 'Meu trabalho é tão importante como o resto da minha vida.', profiles: ['coletivista', 'engajado'] },
-      { text: 'Meu trabalho é centro da minha vida​.', profiles: ['funcional', 'workaholic'] },
+    question: 'Vamos falar sobre o seu trabalho. O quanto ele é importante para você?',
+    options: [
+      { text: 'Meu trabalho não é tão importante, quero ter tempo livre para fazer o que realmente importa para mim.' }, // 1
+      { text: 'Meu trabalho é importante, mas não como o resto da minha vida.' },                                        // 2
+      { text: 'Meu trabalho é tão importante como o resto da minha vida.' },                                            // 3
+      { text: 'Meu trabalho é centro da minha vida.' },                                                                  // 4
     ],
   },
   {
     id: 2,
     question: 'O quanto você diria que é emocionalmente conectado com a sua empresa?',
     options: [
-      { text: 'Eu não gosto do lugar onde trabalho e nem recomendo​.' },
-      { text: 'Eu sou indiferente e não me preocupo em recomendar​.' },
-      { text: 'Eu gosto e acho um bom lugar para trabalhar​.' },
-      { text: 'Eu amo minha empresa e recomendo para amigos e familiares​.' },
+      { text: 'Eu não gosto do lugar onde trabalho e nem recomendo.' },
+      { text: 'Eu sou indiferente e não me preocupo em recomendar.' },
+      { text: 'Eu gosto e acho um bom lugar para trabalhar.' },
+      { text: 'Eu amo minha empresa e recomendo para amigos e familiares.' },
     ],
   },
   {
     id: 3,
     question: 'Qual dos seguintes fatores faria com que você melhorasse o engajamento emocional com a sua empresa?',
     options: [
-      { text: 'Melhores salários​.' },
-      { text: 'Reconhecimento financeiro​.' },
-      { text: 'Benefícios que atendem a minha necessidade​.' },
-      { text: 'Bom equilíbrio entre vida e trabalho​.'},
+      { text: 'Melhores salários.' },
+      { text: 'Reconhecimento financeiro.' },
+      { text: 'Benefícios que atendem a minha necessidade.' },
+      { text: 'Bom equilíbrio entre vida e trabalho.' },
     ],
   },
   {
     id: 4,
-    question: 'O quanto você diria que é envolvido com a comunidade ou com trabalhos voluntários?​',
+    question: 'O quanto você diria que é envolvido com a comunidade ou com trabalhos voluntários?',
     options: [
-      { text: 'Não sou nada envolvido​.', profiles: ['coletivista', 'normativista'] },
-      { text: 'Não sou, mas gostaria de ser​.', profiles: ['coletivista', 'normativista'] },
-      { text: 'Sim, quando eu posso.', profiles: ['workaholic', 'engajado'] },
-      { text: 'Sim, sou ativamente envolvido.', profiles: ['funcional', 'envolvido'] },
+      { text: 'Não sou nada envolvido.' },       // 1
+      { text: 'Não sou, mas gostaria de ser.' }, // 2
+      { text: 'Sim, quando eu posso.' },         // 3
+      { text: 'Sim, sou ativamente envolvido.' } // 4
     ],
   },
   {
     id: 5,
-    question: 'O quanto a sua empresa te incentiva a ser engajado com a comunidade?​',
+    question: 'O quanto a sua empresa te incentiva a ser engajado com a comunidade?',
     options: [
-      { text: 'Nada, e tudo bem​.' },
-      { text: 'Nada, e eu gostaria que ela me incentivasse​.' },
-      { text: 'Um pouco, mas poderia fazer mais​.' },
-      { text: 'Sim, incentiva muito​.' },
+      { text: 'Nada, e tudo bem.' },
+      { text: 'Nada, e eu gostaria que ela me incentivasse.' },
+      { text: 'Um pouco, mas poderia fazer mais.' },
+      { text: 'Sim, incentiva muito.' },
     ],
   },
 ];
 
-export const profiles: Profile[] = [
-  {
-    id: 'forasteiro',
-    name: 'INDEPEDENTE',
-    description: 'Você tende a manter certa distância emocional da empresa. Enxerga o trabalho como algo funcional ou temporário, priorizando sua autonomia e possibilidades futuras.',
-    characteristics: [
-      'Representa 18% dos profissionais',
-      'Determina e respeita limites entre vida pessoal e profissional',
-      'Previsibilidade no dia-a-dia é fundamental',
-      'Clareza sobre expectativas, responsabilidades e critérios é essencial',
-    ],
-    color: '#00EB5E',
-    image: 'https://images.unsplash.com/photo-1758518727592-706e80ebc354?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGxlYWRlciUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzAwNDI1OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 'guardiao',
-    name: 'Guardião do Propósito',
-    description: 'Você se engaja quando acredita no impacto do que faz. Valores, coerência e sentido são fatores decisivos para sua motivação.',
-    characteristics: [
-      'Representa 11% dos profissionais',
-      'Baseado em dados e evidências',
-      'Pensamento lógico estruturado',
-      'Resolve problemas de forma metódica',
-    ],
-    color: '#3B82F6',
-    image: 'https://images.unsplash.com/photo-1758691736498-422201cc57da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc3MDA2MjA0OXww&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 'criativo',
-    name: 'Criativo',
-    description: 'Sua criatividade é seu diferencial, sempre trazendo perspectivas únicas e soluções originais.',
-    characteristics: [
-      'Pensa fora da caixa',
-      'Gera ideias inovadoras',
-      'Boa visão estética',
-      'Flexível e adaptável',
-    ],
-    color: '#EC4899',
-    image: 'https://images.unsplash.com/photo-1709803312782-0c3b175875ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGRlc2lnbmVyJTIwd29ya3BsYWNlfGVufDF8fHx8MTc3MDA2MjA0OXww&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 'executor',
-    name: 'Executor',
-    description: 'Você transforma planos em realidade com eficiência, focando em entregas e resultados práticos.',
-    characteristics: [
-      'Altamente produtivo',
-      'Focado em entregas',
-      'Organizado e disciplinado',
-      'Cumpre prazos consistentemente',
-    ],
-    color: '#10B981',
-    image: 'https://images.unsplash.com/photo-1758874384552-5d090a98033b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9kdWN0aXZlJTIwcHJvZmVzc2lvbmFsJTIwd29ya2luZ3xlbnwxfHx8fDE3NzAwNjIwNTB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 'colaborativo',
-    name: 'Colaborativo',
-    description: 'Você valoriza o trabalho em equipe e consegue criar ambientes harmoniosos e produtivos.',
-    characteristics: [
-      'Trabalha bem em equipe',
-      'Empático e compreensivo',
-      'Bom ouvinte',
-      'Promove cooperação',
-    ],
-    color: '#F59E0B',
-    image: 'https://images.unsplash.com/photo-1739298061707-cefee19941b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwY29sbGFib3JhdGlvbiUyMG9mZmljZXxlbnwxfHx8fDE3NzAwNTMwMDh8MA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 'inovador',
-    name: 'Inovador',
-    description: 'Você está sempre em busca de novas tecnologias e metodologias para melhorar processos.',
-    characteristics: [
-      'Visão de futuro',
-      'Abraça mudanças',
-      'Experimenta novas abordagens',
-      'Questiona o status quo',
-    ],
-    color: '#06B6D4',
-    image: 'https://images.unsplash.com/photo-1760037028485-d00dd2b8f6f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbm5vdmF0aW9uJTIwdGVjaG5vbG9neSUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzAwNjIwNTB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 'estrategico',
-    name: 'Estratégico',
-    description: 'Você tem visão de longo prazo e consegue planejar com precisão para alcançar objetivos complexos.',
-    characteristics: [
-      'Visão de longo prazo',
-      'Planeja com antecedência',
-      'Identifica oportunidades',
-      'Pensa sistemicamente',
-    ],
-    color: '#6366F1',
-    image: 'https://images.unsplash.com/photo-1758873272562-aa5459cbf34b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJhdGVneSUyMHBsYW5uaW5nJTIwYnVzaW5lc3N8ZW58MXx8fHwxNzcwMDYyMDUxfDA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 'comunicador',
-    name: 'Comunicador',
-    description: 'Sua habilidade de comunicação facilita o entendimento e fortalece relacionamentos profissionais.',
-    characteristics: [
-      'Comunica-se com clareza',
-      'Bom relacionamento interpessoal',
-      'Facilita diálogos',
-      'Persuasivo e articulado',
-    ],
-    color: '#EF4444',
-    image: 'https://images.unsplash.com/photo-1761250246894-ee2314939662?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pY2F0aW9uJTIwcHJlc2VudGF0aW9uJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc3MDA2MjA1MXww&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-];
+/**
+ * Dada a resposta de P1 e P4 (1..4), devolve o ID do perfil conforme gabarito do PPT.
+ */
+function mapProfileFromP1P4(p1: number, p4: number): Profile['id'] {
+  if (p1 === 1 && (p4 === 1 || p4 === 2)) return 'forasteiro';     // Independente (18%)
+  if (p1 === 2 && (p4 === 1 || p4 === 2)) return 'guardiao';       // Intencionais (23%)
+  if (p1 === 2 && (p4 === 3 || p4 === 4)) return 'funcional';      // Objetivos (11%)
+  if (p1 === 1 && (p4 === 3 || p4 === 4)) return 'coletivista';    // Comunitários (5%)
+  if (p1 === 4 && (p4 === 1 || p4 === 2)) return 'workaholic';     // Workaholic (10%)
+  if (p1 === 3 && (p4 === 1 || p4 === 2)) return 'envolvido';      // Conectados (9%)
+  if (p1 === 3 && (p4 === 3 || p4 === 4)) return 'normativista';   // Estáveis (17%)
+  if (p1 === 4 && (p4 === 3 || p4 === 4)) return 'engajado';       // Multiengajados (7%)
+  // fallback defensivo (não deve ocorrer com valores válidos)
+  return 'forasteiro';
+}
 
 export function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
-  const [showResult, setShowResult] = useState(false);
+  const [answers, setAnswers] = useState<number[]>([]);     // guarda índices 0..3
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [finalProfileId, setFinalProfileId] = useState<Profile['id'] | null>(null);
 
   const handleOptionSelect = (optionIndex: number) => {
     setSelectedOption(optionIndex);
   };
 
   const handleNext = () => {
-    if (selectedOption !== null) {
-      const newAnswers = [...answers];
-      newAnswers[currentQuestion] = selectedOption;
-      setAnswers(newAnswers);
+    if (selectedOption === null) return;
 
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1);
-        setSelectedOption(newAnswers[currentQuestion + 1] ?? null);
-      } else {
-        calculateResult(newAnswers);
-      }
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = selectedOption;
+    setAnswers(newAnswers);
+
+    if (currentQuestion < questions.length - 1) {
+      const nextIndex = currentQuestion + 1;
+      setCurrentQuestion(nextIndex);
+      setSelectedOption(newAnswers[nextIndex] ?? null);
+    } else {
+      // Finalizou: calcula resultado apenas com P1 e P4
+      const p1 = (newAnswers[0] ?? 0) + 1; // transforma 0..3 -> 1..4
+      const p4 = (newAnswers[3] ?? 0) + 1;
+      const profileId = mapProfileFromP1P4(p1, p4);
+      setFinalProfileId(profileId);
     }
   };
 
   const handlePrevious = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
-      setSelectedOption(answers[currentQuestion - 1] ?? null);
-    }
+    if (currentQuestion === 0) return;
+    const prevIndex = currentQuestion - 1;
+    setCurrentQuestion(prevIndex);
+    setSelectedOption(answers[prevIndex] ?? null);
   };
 
-  const calculateResult = (finalAnswers: number[]) => {
-    const profileScores: { [key: string]: number } = {};
-
-    finalAnswers.forEach((answerIndex, questionIndex) => {
-      const selectedProfiles = questions[questionIndex].options[answerIndex].profiles;
-      selectedProfiles.forEach((profile) => {
-        profileScores[profile] = (profileScores[profile] || 0) + 1;
-      });
-    });
-
-    setShowResult(true);
-  };
-
-  const getProfileScores = (): { [key: string]: number } => {
-    const profileScores: { [key: string]: number } = {};
-
-    answers.forEach((answerIndex, questionIndex) => {
-      const selectedProfiles = questions[questionIndex].options[answerIndex].profiles;
-      selectedProfiles.forEach((profile) => {
-        profileScores[profile] = (profileScores[profile] || 0) + 1;
-      });
-    });
-
-    return profileScores;
+  const handleRestart = () => {
+    setCurrentQuestion(0);
+    setAnswers([]);
+    setSelectedOption(null);
+    setFinalProfileId(null);
   };
 
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
-  if (showResult) {
-    return <QuizResult profileScores={getProfileScores()} onRestart={() => {
-      setCurrentQuestion(0);
-      setAnswers([]);
-      setShowResult(false);
-      setSelectedOption(null);
-    }} />;
+  // Tela de Resultado
+  if (finalProfileId) {
+    return <QuizResult profileId={finalProfileId} onRestart={handleRestart} />;
   }
 
+  // Tela de Perguntas
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8">
