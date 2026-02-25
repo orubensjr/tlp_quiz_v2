@@ -23,68 +23,52 @@ export interface Profile {
 const questions: Question[] = [
   {
     id: 1,
-    question: 'Quando você pensa no seu trabalho hoje, o que mais define sua relação com ele?',
-    scale: [
-      { value: 1, profiles
+    question: 'Vamos falar sobre o seu trabalho. O quanto ele é importante para você?​',
+       options: [
+      { text: 'Meu trabalho não é tão importante, quero ter tempo livre para fazer o que realmente importa para mim.', profiles: ['independente', 'comunitario'] },
+      { text: 'Meu trabalho é importante, mas não como o resto da minha vida.', profiles: ['guardiao', 'normativista'] },
+      { text: 'Meu trabalho é tão importante como o resto da minha vida.', profiles: ['coletivista', 'engajado'] },
+      { text: 'Meu trabalho é centro da minha vida​.', profiles: ['funcional', 'workaholic'] },
+    ],
   },
   {
     id: 2,
-    question: 'O que mais te motiva no dia a dia profissional?',
+    question: 'O quanto você diria que é emocionalmente conectado com a sua empresa?',
     options: [
-      { text: 'Ter liberdade para criar meus caminhos e ver meu trabalho sendo reconhecido e conectado ao negócio.', profiles: ['forasteiro', 'envolvido'] },
-      { text: 'Ser parte de algo que gera impacto positivo, com estrutura e previsibilidade para apoiar essa entrega.', profiles: ['guardiao', 'normativista'] },
-      { text: 'Sentir que faço parte de um grupo unido e crescer junto com a empresa ao longo do caminho.', profiles: ['coletivista', 'engajado'] },
-      { text: 'Ter produtividade constante, com clareza do meu papel e estabilidade para entregar bem.', profiles: ['funcional', 'workaholic'] },
+      { text: 'Eu não gosto do lugar onde trabalho e nem recomendo​.' },
+      { text: 'Eu sou indiferente e não me preocupo em recomendar​.' },
+      { text: 'Eu gosto e acho um bom lugar para trabalhar​.' },
+      { text: 'Eu amo minha empresa e recomendo para amigos e familiares​.' },
     ],
   },
   {
     id: 3,
-    question: 'Como você reage a mudanças?',
+    question: 'Qual dos seguintes fatores faria com que você melhorasse o engajamento emocional com a sua empresa?',
     options: [
-      { text: 'Reajo com certo distanciamento, mas só me sinto confortável quando a mudança vem com regras claras.', profiles: ['forasteiro', 'normativista'] },
-      { text: 'Primeiro avalio se faz sentido para os valores da empresa e gosto de discutir os impactos com o time.', profiles: ['guardiao', 'coletivista'] },
-      { text: 'Vejo mudanças como oportunidade de entregar mais e até de liderar iniciativas para fazer acontecer.', profiles: ['workaholic', 'envolvido'] },
-      { text: 'Me adapto quando está bem explicado e, quando percebo evolução, entro no ritmo com facilidade.', profiles: ['funcional', 'engajado'] },
+      { text: 'Melhores salários​.' },
+      { text: 'Reconhecimento financeiro​.' },
+      { text: 'Benefícios que atendem a minha necessidade​.' },
+      { text: 'Bom equilíbrio entre vida e trabalho​.'},
     ],
   },
   {
     id: 4,
-    question: 'Qual frase mais te representa?',
+    question: 'O quanto você diria que é envolvido com a comunidade ou com trabalhos voluntários?​',
     options: [
-      { text: 'Estou aqui enquanto fizer sentido e enquanto o que a empresa defende estiver alinhado com o que acredito.', profiles: ['forasteiro', 'guardiao'] },
-      { text: 'Acredito que ninguém faz nada sozinho, e processos bem feitos ajudam todo mundo a funcionar melhor', profiles: ['coletivista', 'normativista'] },
-      { text: 'Trabalho duro faz parte de quem eu sou e tenho orgulho de fazer parte do que estamos construindo.', profiles: ['workaholic', 'engajado'] },
-      { text: 'Faço bem o meu papel e quero contribuir de verdade, desde que tudo esteja claro para eu entregar o melhor.', profiles: ['funcional', 'envolvido'] },
+      { text: 'Não sou nada envolvido​.', profiles: ['coletivista', 'normativista'] },
+      { text: 'Não sou, mas gostaria de ser​.', profiles: ['coletivista', 'normativista'] },
+      { text: 'Sim, quando eu posso.', profiles: ['workaholic', 'engajado'] },
+      { text: 'Sim, sou ativamente envolvido.', profiles: ['funcional', 'envolvido'] },
     ],
   },
   {
     id: 5,
-    question: 'Como você se sente em relação à empresa hoje?',
+    question: 'O quanto a sua empresa te incentiva a ser engajado com a comunidade?​',
     options: [
-      { text: 'Conectado ao que faz sentido para mim e ao ambiente cultural que me impulsiona a seguir em frente.', profiles: ['forasteiro', 'engajado'] },
-      { text: 'Conectado ao propósito e às pessoas que compartilham dos mesmos valores.', profiles: ['guardiao', 'coletivista'] },
-      { text: 'Conectado ao negócio e às estruturas que sustentam a forma como trabalhamos.', profiles: ['envolvido', 'normativista'] },
-      { text: 'Conectado às minhas responsabilidades e dedicado a fazer o trabalho acontecer todos os dias.', profiles: ['funcional', 'workaholic'] },
-    ],
-  },
-  {
-    id: 6,
-    question: 'O que mais te gera desconforto no trabalho?',
-    options: [
-      { text: 'Quando não há perspectiva nem clareza sobre funções, prioridades ou o caminho a seguir', profiles: ['forasteiro', 'funcional'] },
-      { text: 'Quando percebo incoerência entre discurso e prática ou falta de alinhamento cultural.', profiles: ['guardiao', 'engajado'] },
-      { text: 'Quando o clima do time é ruim ou quando minha contribuição não é reconhecida.', profiles: ['coletivista', 'envolvido'] },
-      { text: 'Quando sinto que a produtividade trava porque faltam regras claras, processos ou direcionamento.', profiles: ['normativista', 'workaholic'] },
-    ],
-  },
-  {
-    id: 7,
-    question: 'O que mais te faria permanecer em uma empresa?',
-    options: [
-      { text: 'Ter oportunidades reais de crescimento, autonomia para construir meu caminho e sentir que contribuo para algo maior.', profiles: ['forasteiro', 'envolvido'] },
-      { text: 'Trabalhar em uma empresa com propósito claro e verdadeiro, sustentado por estrutura e organização que tornam tudo coerente.', profiles: ['guardiao', 'normativista'] },
-      { text: 'Estar em um time forte e colaborativo, crescendo junto com a empresa e construindo algo relevante.', profiles: ['coletivista', 'engajado'] },
-      { text: 'Ter desafios constantes, mas com clareza, segurança e condições para entregar sempre o melhor.', profiles: ['workaholic', 'funcional'] },
+      { text: 'Nada, e tudo bem​.', profiles: ['forasteiro', 'engajado'] },
+      { text: 'Nada, e eu gostaria que ela me incentivasse​.', profiles: ['guardiao', 'coletivista'] },
+      { text: 'Um pouco, mas poderia fazer mais​.', profiles: ['envolvido', 'normativista'] },
+      { text: 'Sim, incentiva muito​.', profiles: ['funcional', 'workaholic'] },
     ],
   },
 ];
