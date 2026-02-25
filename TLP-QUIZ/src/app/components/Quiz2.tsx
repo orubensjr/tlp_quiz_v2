@@ -65,10 +65,10 @@ const questions: Question[] = [
     id: 5,
     question: 'O quanto a sua empresa te incentiva a ser engajado com a comunidade?​',
     options: [
-      { text: 'Nada, e tudo bem​.', profiles: ['forasteiro', 'engajado'] },
-      { text: 'Nada, e eu gostaria que ela me incentivasse​.', profiles: ['guardiao', 'coletivista'] },
-      { text: 'Um pouco, mas poderia fazer mais​.', profiles: ['envolvido', 'normativista'] },
-      { text: 'Sim, incentiva muito​.', profiles: ['funcional', 'workaholic'] },
+      { text: 'Nada, e tudo bem​.' },
+      { text: 'Nada, e eu gostaria que ela me incentivasse​.' },
+      { text: 'Um pouco, mas poderia fazer mais​.' },
+      { text: 'Sim, incentiva muito​.' },
     ],
   },
 ];
