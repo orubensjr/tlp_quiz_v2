@@ -1,5 +1,5 @@
 import { Trophy, RefreshCw, Share2, MessageCircle, Linkedin, Instagram } from 'lucide-react';
-import { profiles } from '@/app/components/Quiz2';
+import { profiles } from '@/app/components/Quiz';
 import { useState } from 'react';
 
 interface QuizResultProps {
