@@ -1,25 +1,25 @@
-import { Trophy, RefreshCw, Share2, MessageCircle, Linkedin, Instagram } from 'lucide-react';
-import { profiles } from '@/src/app/components/Quiz';
+// src/app/components/QuizResult.tsx
 import { useState } from 'react';
+import { Trophy, RefreshCw, Share2, MessageCircle, Linkedin, Instagram } from 'lucide-react';
+import { getProfileById } from './profiles';
+import type { ProfileId } from './profiles';
 
 interface QuizResultProps {
-  profileId: string;   // Agora recebemos apenas UM perfil final
+  profileId: ProfileId; // UM perfil final, conforme gabarito do PPT
   onRestart: () => void;
 }
 
 export function QuizResult({ profileId, onRestart }: QuizResultProps) {
   const [showInstagramModal, setShowInstagramModal] = useState(false);
 
-  const mainProfile = profiles.find((p) => p.id === profileId);
+  const mainProfile = getProfileById(profileId);
 
   if (!mainProfile) {
     return (
       <div className="min-h-screen flex items-center justify-center p-8">
         <div className="max-w-md w-full bg-white p-8 rounded-xl shadow">
           <h1 className="mb-4">Ops! Não encontrei o seu perfil.</h1>
-          <p className="text-muted-foreground mb-6">
-            Tente refazer o quiz.
-          </p>
+          <p className="text-muted-foreground mb-6">Tente refazer o quiz.</p>
           <button
             onClick={onRestart}
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg hover:from-purple-600 hover:to-blue-600 transition-all"
@@ -62,13 +62,12 @@ export function QuizResult({ profileId, onRestart }: QuizResultProps) {
     document.body.appendChild(textArea);
     textArea.focus();
     textArea.select();
-
     try {
       document.execCommand('copy');
       textArea.remove();
       alert('Texto copiado! Cole no Instagram para compartilhar seu resultado 📋✨');
       setShowInstagramModal(false);
-    } catch (err) {
+    } catch {
       textArea.remove();
     }
   };
@@ -76,7 +75,6 @@ export function QuizResult({ profileId, onRestart }: QuizResultProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-4">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-8 md:p-12">
-
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mb-4">
@@ -172,7 +170,7 @@ export function QuizResult({ profileId, onRestart }: QuizResultProps) {
               LinkedIn
             </button>
             <button
-              onClick={handleInstagramShare}
+              onClick={() => setShowInstagramModal(true)}
               className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F56040] text-white rounded-lg hover:opacity-90 transition-all"
             >
               <Instagram className="size-5" />
@@ -214,16 +212,3 @@ export function QuizResult({ profileId, onRestart }: QuizResultProps) {
                 Copiar Texto
               </button>
               <button
-                onClick={() => setShowInstagramModal(false)}
-                className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-all ml-2"
-              >
-                Fechar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-``
